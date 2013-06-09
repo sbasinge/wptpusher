@@ -116,7 +116,9 @@ var SampleApp = function() {
 			note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 			note.payload = {'messageFrom': 'Caroline'};
 			console.log('%s: Payload created.', note );
-			//apnConnection.pushNotification(note, myDevice);
+			
+			apnConnection.pushNotification(note, myDevice);
+			
 			res.send(JSON.stringify(note.payload));
         };
 		
