@@ -117,6 +117,7 @@ var SampleApp = function() {
 			note.payload = {'messageFrom': 'Caroline'};
 			console.log('%s: Payload created.', note );
 			//apnConnection.pushNotification(note, myDevice);
+			res.send(JSON.stringify(note.payload));s
         };
 		
         self.routes['/asciimo'] = function(req, res) {
