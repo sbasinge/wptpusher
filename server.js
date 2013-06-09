@@ -104,8 +104,10 @@ var SampleApp = function() {
        self.routes['/send'] = function(req, res) {
             var options = { "gateway": "gateway.sandbox.push.apple.com" };
 			var apnConnection = new apn.Connection(options);
+			console.log("New connection created.");
 			var token = "a182f1f4a0077bfb723728ea8a0b2e4dc1cd1cabc94a11ef8666a0f8edb57894";
 			var myDevice = new apn.Device(token);
+			console.log('%s: New device created.', myDevice );
 			var note = new apn.Notification();
 
 			note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
@@ -113,8 +115,8 @@ var SampleApp = function() {
 			note.sound = "ping.aiff";
 			note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 			note.payload = {'messageFrom': 'Caroline'};
-
-			apnConnection.pushNotification(note, myDevice);
+			console.log('%s: Payload created.', note );
+			//apnConnection.pushNotification(note, myDevice);
         };
 		
         self.routes['/asciimo'] = function(req, res) {
