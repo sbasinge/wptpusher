@@ -114,7 +114,7 @@ var SampleApp = function() {
 			note.badge = 3;
 			note.sound = "ping.aiff";
 			note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-			note.payload = {'messageFrom': 'Caroline'};
+			note.payload = {'messageFrom': 'Waypoint v1'};
 			console.log('%s: Payload created.', note );
 			
 			apnConnection.pushNotification(note, myDevice);
