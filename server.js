@@ -2,6 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var apn = require('apn');
 
 
 /**
@@ -100,6 +101,22 @@ var SampleApp = function() {
             res.send('1');
         };
 
+       self.routes['/send'] = function(req, res) {
+            var options = { "gateway": "gateway.sandbox.push.apple.com" };
+			var apnConnection = new apn.Connection(options);
+			var token = "a182f1f4a0077bfb723728ea8a0b2e4dc1cd1cabc94a11ef8666a0f8edb57894";
+			var myDevice = new apn.Device(token);
+			var note = new apn.Notification();
+
+			note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+			note.badge = 3;
+			note.sound = "ping.aiff";
+			note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+			note.payload = {'messageFrom': 'Caroline'};
+
+			apnConnection.pushNotification(note, myDevice);
+        };
+		
         self.routes['/asciimo'] = function(req, res) {
             var link = "http://i.imgur.com/kmbjB.png";
             res.send("<html><body><img src='" + link + "'></body></html>");
