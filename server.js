@@ -102,7 +102,7 @@ var SampleApp = function() {
         };
 
        self.routes['/send'] = function(req, res) {
-            var options = { "gateway": "gateway.sandbox.push.apple.com", errorCallback: self.errorCallBack};
+            var options = { "gateway": "gateway.sandbox.push.apple.com", errorCallback: self.errorCallBack, pfx: "WaypointPush.p12", passphrase: "NetJets Waypoint"};
 			var apnConnection = new apn.Connection(options);
 			console.log("New connection created.");
 			var token = "a182f1f4a0077bfb723728ea8a0b2e4dc1cd1cabc94a11ef8666a0f8edb57894";
